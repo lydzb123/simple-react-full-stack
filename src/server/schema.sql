@@ -2,42 +2,32 @@ CREATE DATABASE my_orders;
 
 USE my_orders;
 
-CREATE TABLE orders (
+CREATE TABLE order_info (
   orderID int NOT NULL AUTO_INCREMENT,
   name VARCHAR(50),
-
-  PRIMARY KEY (orderID),
+  email VARCHAR(25),
+  password VARCHAR(25),
+  PRIMARY KEY (orderID)
 );
 
+CREATE TABLE shipping_info (
+orderID int,
+address VARCHAR(50),
+address2 VARCHAR(50),
+phonenumber VARCHAR(12),
+FOREIGN KEY (orderID)
+  REFERENCES order_info(orderID)
+);
 
+CREATE TABLE billing_info (
+orderID int,
+creditcardnumber int,
+exp VARCHAR(20),
+billingzip int,
+FOREIGN KEY (orderID)
+  REFERENCES order_info(orderID)
+);
 
-     <input type="text" id="name"/></label>
-        <input type="text" id="email"/></label>
-        <input type="text" id="password"/></label>
-
-        //creates a new user
-
-        //shipping info
-        <input type="text" id="line1"/></label>
-        <input type="text" id="line2"/></label>
-        <input type="text" id="city"/></label>
-        <input type="text" id="state"/></label>
-        <input type="number" id="zipcode"/></label>
-        <input type="text" id="phonenumber"/></label>
-
-        //billing info
-
-        <label>Credit Card Number:
-        <input type="text" id="creditcardnumber"/></label>
-
-        <label>Expiration Date:
-        <input type="text" id="exp"/></label>
-
-        <label>CVV:
-        <input type="text" id="css"/></label>
-
-        <label>Billing Zipcode:
-        <input type="number" id="billingzip"/></label>
 
 
 

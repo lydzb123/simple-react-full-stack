@@ -7,13 +7,13 @@ function Form(props) {
         <form onSubmit={props.onNext}>
 
         <label>Name:
-        <input type="text" name="name" value={props.formData.name} onChange={(e) => {props.handleInput(e)}}/></label>
+        <input type="text" name="name" value={props.formData.name} onChange={props.handleInput}/></label>
 
         <label>Email:
-        <input type="text" name="email" value={props.formData.email} onChange={(e) => {props.handleInput(e)}} /></label>
+        <input type="text" name="email" value={props.formData.email} onChange={props.handleInput} /></label>
 
         <label>Password:
-        <input type="text" name="password" value={props.formData.password} onChange={(e) => {props.handleInput(e)}}/></label>
+        <input type="password" name="password" value={props.formData.password} onChange={props.handleInput}/></label>
 
         <input type="submit" value="Next"/>
 

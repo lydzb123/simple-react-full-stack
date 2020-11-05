@@ -15,19 +15,19 @@ export default class App extends Component {
       form3: false,
       confirmation: false,
       formData: {
-        name: null,
-        email: null,
-        password: null,
-        line1: null,
-        line2: null,
-        city: null,
-        state: null,
-        zipcode: null,
-        phonenumber: null,
-        creditcardnumber: null,
-        exp: null,
-        cvv: null,
-        billingzip: null
+        name: "",
+        email: "",
+        password: "",
+        line1: "",
+        line2: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        phonenumber: "",
+        creditcardnumber: "",
+        exp: "",
+        cvv: "",
+        billingzip: ""
       }
     };
 
@@ -38,7 +38,6 @@ export default class App extends Component {
   }
 
   handleInputChange(e) {
-    //not getting triggered?
     var {formData} = this.state;
     formData[e.target.name] = e.target.value;
 
