@@ -6,7 +6,6 @@ import ConfirmationPage from './ConfirmationPage.jsx';
 import $ from 'jquery';
 
 
-
 export default class App extends Component {
   constructor(props){
     super(props);
@@ -31,26 +30,26 @@ export default class App extends Component {
         billingzip: null
       }
     };
+
     this.onNext = this.onNext.bind(this);
     this.onPurchase = this.onPurchase.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.collectForm = this.collectForm.bind(this);
 
   }
 
-  handleInputChange = (e) => {
-    e.preventDefault;
+  handleInputChange(e) {
+    //not getting triggered?
+    var {formData} = this.state;
+    formData[e.target.name] = e.target.value;
+
     this.setState({
-      formData.[e.target.name] = e.target.value;
+      formData
     })
+    e.preventDefault();
+
   };
 
 
-  collectForm = (e) => {
-    e.preventDefault();
-    const data = this.state.formData;
-    console.log(data);
-  }
 
   onNext(e) {
     //conditional form rendering
@@ -81,19 +80,25 @@ export default class App extends Component {
         confirmation: true
       })
     }
+
   e.preventDefault();
   }
 
-  onPurchase() {
-      //send summary back to page
+  onPurchase(e) {
+    //send summary back to page
 
-    $.post('/confirmation', (data) => {
-      //upon success send form data to db??
+    const data = this.state.formData;
+    console.log(data);
+
+    $.post('/confirmation', data, (data) => {
+      console.log('good post');
     });
 
     this.setState({
       confirmation: false
     })
+
+    e.preventDefault();
   }
 
   render() {
@@ -104,8 +109,8 @@ export default class App extends Component {
         <button onClick={this.onNext}>Checkout</button>
         {form1 && <Form onNext={this.onNext} formData={this.state.formData} handleInput={this.handleInputChange}/>}
         {form2 && <Form2 onNext={this.onNext} formData={this.state.formData} handleInput={this.handleInputChange}/>}
-        {form3 && <Form3 onNext={this.onNext}formData={this.state.formData} handleInput={this.handleInputChange}/>}
-        {confirmation && <ConfirmationPage onPurchase={this.onPurchase} collectForm={this.collectForm}/>}
+        {form3 && <Form3 onNext={this.onNext} formData={this.state.formData} handleInput={this.handleInputChange}/>}
+        {confirmation && <ConfirmationPage onPurchase={this.onPurchase} formData={this.state.formData} />}
       </div>
     );
   }

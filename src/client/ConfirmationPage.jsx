@@ -4,11 +4,10 @@ function ConfirmationPage (props){
 return (
   <div>
     <h2>Order Summary:</h2>
+    <li>{props.formData.name}</li>
+    {console.log(props.formData)}
 
 
-    {props.collectForm}
-
-        <input type="submit" onClick={props.onNext} value="Next"/>
     <button onClick={props.onPurchase}>Purchase</button>
   </div>
 )
